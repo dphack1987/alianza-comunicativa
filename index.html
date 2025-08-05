@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Corporativo DPHACK-SERVICES y El Informativo La Región</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fuente Inter para una tipografía moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colores Generales */
+            --color-bg-primary: #F8F8F8; /* Muy ligero gris para el fondo principal */
+            --color-text-dark: #333333;
+            --color-text-muted: #555555;
+
+            /* Colores DPHACK-SERVICES (Azules) */
+            --color-dphack-bg: #FFFFFF; /* Fondo blanco para la sección DPHACK */
+            --color-dphack-accent-blue: #007BFF;
+            --color-dphack-accent-blue-light: #00C6FF;
+            --color-dphack-accent-blue-dark: #0056B3;
+
+            /* Colores El Informativo La Región (Verdes) */
+            --color-informativo-bg: #F0FFF0; /* Muy ligero verde para la sección Informativo */
+            --color-informativo-accent-green: #28A745;
+            --color-informativo-accent-green-light: #2ECC71;
+            --color-informativo-accent-green-dark: #1E7E34;
+
+            /* Propiedades de Glassmorphism */
+            --card-glass-bg-opacity: 0.8;
+            --card-glass-border-color: rgba(0, 0, 0, 0.1);
+            --card-glass-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-primary);
+            background-image: radial-gradient(circle at center, #E0E0E0 1px, transparent 1px); /* Patrón de puntos sutil */
+            background-size: 20px 20px;
+            color: var(--color-text-dark);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Previene scroll horizontal en animaciones */
+        }
+
+        /* Degradado de texto para el título HOLDING */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--color-dphack-accent-blue), var(--color-informativo-accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Fondos de sección */
+        .section-bg-dphack {
+            background-color: var(--color-dphack-bg);
+            border-top: 1px solid rgba(0, 123, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 123, 255, 0.1);
+        }
+        .section-bg-informativo {
+            background-color: var(--color-informativo-bg);
+            border-top: 1px solid rgba(40, 167, 69, 0.1);
+            border-bottom: 1px solid rgba(40, 167, 69, 0.1);
+        }
+
+        /* Estilo de tarjeta base con efecto glassmorphism */
+        .card-glass {
+            background-color: rgba(255, 255, 255, var(--card-glass-bg-opacity));
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid var(--card-glass-border-color);
+            box-shadow: var(--card-glass-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative; /* Necesario para el pseudo-elemento ::before */
+            overflow: hidden; /* Para que el borde degradado no se desborde */
+        }
+        .card-glass:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Bordes degradados para tarjetas DPHACK */
+        .card-border-dphack::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1rem;
+            padding: 1px;
+            background: linear-gradient(45deg, var(--color-dphack-accent-blue), var(--color-dphack-accent-blue-light), var(--color-dphack-accent-blue));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .card-border-dphack:hover::before {
+            background: linear-gradient(45deg, var(--color-dphack-accent-blue-light), var(--color-dphack-accent-blue), var(--color-dphack-accent-blue-light));
+        }
+
+        /* Bordes degradados para tarjetas Informativo */
+        .card-border-informativo::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1rem;
+            padding: 1px;
+            background: linear-gradient(45deg, var(--color-informativo-accent-green), var(--color-informativo-accent-green-light), var(--color-informativo-accent-green));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .card-border-informativo:hover::before {
+            background: linear-gradient(45deg, var(--color-informativo-accent-green-light), var(--color-informativo-accent-green), var(--color-informativo-accent-green-light));
+        }
+
+        /* Estilo de botón flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: var(--color-informativo-accent-green);
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.15) rotate(5deg);
+            background-color: var(--color-informativo-accent-green-dark);
+        }
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Divisor de sección más estilizado */
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-dphack-accent-blue-dark), var(--color-informativo-accent-green-dark));
+            width: 100%;
+            max-width: 800px;
+            margin: 10rem auto;
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        /* Encabezados de sección */
+        .section-heading {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
+            text-align: center;
+            line-height: 1.2;
+            color: var(--color-text-dark);
+        }
+        @media (max-width: 768px) {
+            .section-heading {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Sub-encabezados de sección */
+        .sub-section-heading {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--color-text-dark);
+            padding-bottom: 0.75rem;
+            display: inline-block;
+            position: relative;
+        }
+        .sub-section-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-dphack-accent-blue), transparent);
+            border-radius: 1.5px;
+        }
+        .sub-section-heading-informativo::after {
+            background: linear-gradient(90deg, var(--color-informativo-accent-green), transparent);
+        }
+
+        /* Tablas de medios */
+        .media-table {
+            width: 100%;
+            border-collapse: separate; /* Permite border-radius en la tabla */
+            border-spacing: 0;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        .media-table th, .media-table td {
+            padding: 1.1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-right: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .media-table th {
+            background-color: rgba(0, 123, 255, 0.1); /* Fondo azul sutil para encabezados DPHACK */
+            color: var(--color-text-dark);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .media-table-informativo th {
+            background-color: rgba(40, 167, 69, 0.1); /* Fondo verde sutil para encabezados Informativo */
+        }
+        .media-table td {
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco translúcido */
+            color: var(--color-text-muted);
+        }
+        .media-table tr:nth-child(even) td {
+            background-color: rgba(255, 255, 255, 0.6); /* Alternancia más sutil */
+        }
+        .media-table th:first-child, .media-table td:first-child { border-left: none; }
+        .media-table th:last-child, .media-table td:last-child { border-right: none; }
+        .media-table tr:last-child td { border-bottom: none; }
+
+        /* Tarjetas de paquetes */
+        .package-card {
+            background-color: rgba(0, 123, 255, 0.05); /* Fondo azul translúcido */
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .package-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--color-dphack-accent-blue);
+        }
+        .package-card-informativo {
+            background-color: rgba(40, 167, 69, 0.05); /* Fondo verde translúcido */
+            border: 1px solid rgba(40, 167, 69, 0.2);
+        }
+        .package-card-informativo:hover {
+            border-color: var(--color-informativo-accent-green);
+        }
+        .price-text {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-informativo-accent-green); /* Verde vibrante para precios */
+            margin-top: 1.5rem;
+            display: block;
+        }
+        /* Color de precio para DPHACK-SERVICES */
+        .price-text-dphack {
+            color: var(--color-dphack-accent-blue);
+        }
+        .package-details {
+            list-style: none; /* Eliminar viñetas por defecto */
+            padding-left: 0;
+            margin-top: 1.25rem;
+        }
+        .package-details li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-muted);
+        }
+        .package-details li::before {
+            content: '✓'; /* Icono de checkmark */
+            position: absolute;
+            left: 0;
+            color: var(--color-informativo-accent-green);
+            font-weight: bold;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+        /* Color de checkmark para DPHACK-SERVICES */
+        .package-details-dphack li::before {
+            color: var(--color-dphack-accent-blue);
+        }
+
+
+        /* Animaciones al hacer scroll */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animación de fondo sutil para el header */
+        @keyframes subtle-glow {
+            0% { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); }
+            50% { box-shadow: 0 15px 35px rgba(0, 123, 255, 0.1), 0 15px 35px rgba(40, 167, 69, 0.1); }
+            100% { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); }
+        }
+        .header-dual-bg {
+            animation: subtle-glow 8s infinite alternate ease-in-out;
+            background: linear-gradient(135deg, #E0F2F7 0%, #E0F2F7 40%, #E8F5E9 60%, #E8F5E9 100%); /* Transición de azul claro a verde claro */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="min-h-screen flex flex-col items-center p-4 md:p-8">
+        <!-- Sección de Encabezado Profesional y Diferenciado -->
+        <header class="text-center mb-20 w-full max-w-5xl header-dual-bg p-8 md:p-12 rounded-2xl border border-gray-200">
+            <div class="flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 mb-8 relative z-10">
+                <!-- Logo DPHACK-SERVICES -->
+                <div class="flex-shrink-0 text-left md:w-1/2 pr-4 md:pr-8">
+                    <img src="./assets/logo-dphack.png" alt="Logo DPHACK-SERVICES" class="w-40 md:w-56 h-auto mx-auto md:mx-0 mb-4 rounded-lg shadow-xl">
+                    <h2 class="text-3xl font-extrabold text-gray-800">DPHACK-SERVICES</h2>
+                    <p class="text-lg text-gray-600">Ciberseguridad de Vanguardia</p>
+                </div>
+
+                <!-- Texto Central del Holding -->
+                <div class="flex-grow text-center md:w-auto px-4">
+                    <h1 class="text-4xl md:text-7xl font-black gradient-text leading-tight mb-4">HOLDING</h1>
+                    <p class="text-xl md:text-3xl text-gray-700 font-bold">Innovación y Confiabilidad</p>
+                </div>
+
+                <!-- Logo El Informativo La Región -->
+                <div class="flex-shrink-0 text-right md:w-1/2 pl-4 md:pl-8">
+                    <img src="./assets/logo-informativo.jpg" alt="Logo El Informativo La Región" class="w-40 md:w-56 h-auto mx-auto md:mx-0 mb-4 rounded-lg shadow-xl opacity-90">
+                    <h2 class="text-3xl font-extrabold text-gray-800">El Informativo La Región</h2>
+                    <p class="text-lg text-gray-600">Periodismo que Conecta</p>
+                </div>
+            </div>
+            <p class="text-xl text-gray-700 max-w-3xl mx-auto mt-8 relative z-10">Este portafolio es la **vitrina estratégica** de nuestro holding, donde la **protección digital especializada** de DPHACK-SERVICES se une al **poder de la información y comunicación de gran alcance** de El Informativo La Región, para ofrecer a nuestros clientes una visibilidad sin precedentes y una seguridad inquebrantable.</p>
+        </header>
+
+        <!-- Sección de Propuesta de Valor Integrada -->
+        <section class="w-full max-w-6xl text-center mb-20 p-8 section-bg-dphack rounded-2xl shadow-xl border border-blue-200 fade-in-up">
+            <h2 class="section-heading text-gray-800">Nuestra Propuesta de Valor Integrada</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">En un mundo cada vez más digital, la seguridad y la comunicación son inseparables. Nuestro holding le ofrece una ventaja única:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="card-glass p-6 rounded-lg shadow-md border-l-4 border-blue-400 fade-in-up">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Protección Total del Ecosistema Digital</h3>
+                    <p class="text-gray-600">DPHACK-SERVICES asegura sus sistemas, datos y operaciones contra ciberamenazas. Esto significa que la información que usted genera o comparte a través de cualquier canal, incluyendo los de comunicación, está resguardada con los más altos estándares de seguridad.</p>
+                </div>
+                <div class="card-glass p-6 rounded-lg shadow-md border-l-4 border-blue-400 fade-in-up" data-delay="100">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Comunicación Segura y de Gran Alcance</h3>
+                    <p class="text-gray-600">El Informativo La Región le ofrece una plataforma robusta para amplificar su mensaje, gestionar su reputación y conectar con su audiencia. La seguridad proporcionada por DPHACK-SERVICES garantiza que sus campañas y contenidos no sean comprometidos, manteniendo la confianza y credibilidad.</p>
+                </div>
+                <div class="card-glass p-6 rounded-lg shadow-md border-l-4 border-blue-400 col-span-1 md:col-span-2 fade-in-up" data-delay="200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Sinergia para el Éxito Digital</h3>
+                    <p class="text-gray-600">Al elegir nuestro holding, usted no solo obtiene servicios de élite en ciberseguridad y periodismo, sino una estrategia coordinada que **respeta la especialización de cada empresa**. DPHACK-SERVICES y El Informativo La Región operan de forma independiente en sus respectivas áreas, pero su presentación conjunta en este portafolio maximiza su alcance y le ofrece una solución completa para navegar el panorama digital con confianza y éxito.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Servicios DPHACK-SERVICES -->
+        <section id="dphack-services" class="w-full max-w-6xl mb-16 p-6 section-bg-dphack rounded-2xl shadow-xl border border-blue-200">
+            <div class="flex items-center justify-center mb-8 fade-in-up">
+                <img src="./assets/logo-dphack.png" alt="Logo DPHACK-SERVICES" class="w-24 h-auto mr-4">
+                <h2 class="section-heading text-gray-800">Servicios de DPHACK-SERVICES</h2>
+            </div>
+            <p class="text-center text-gray-700 mb-10 max-w-4xl mx-auto fade-in-up" data-delay="100">DPHACK-SERVICES se especializa en proteger sus activos digitales, infraestructuras y datos contra las amenazas más sofisticadas, garantizando la continuidad y resiliencia de su negocio.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tarjeta de Servicio 1: Análisis de Vulnerabilidades -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Análisis de Vulnerabilidades y Gestión de Riesgos</h3>
+                    <p class="text-gray-600 mb-4">Identificamos, evaluamos y priorizamos las debilidades de seguridad en toda su infraestructura tecnológica. Implementamos estrategias para mitigar riesgos y proteger sus activos más críticos.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Escaneo de Redes y Sistemas:</strong> Detección proactiva de puertos abiertos, servicios vulnerables y configuraciones inseguras.</li>
+                        <li><strong>Análisis de Aplicaciones Web y Móviles:</strong> Identificación de fallas de seguridad en el código y la lógica de negocio.</li>
+                        <li><strong>Pruebas de Penetración (Pentesting):</strong> Simulación de ataques controlados para explotar vulnerabilidades y evaluar la resistencia de sus sistemas.</li>
+                        <li><strong>Análisis de Configuración Segura:</strong> Revisión de la configuración de servidores, bases de datos y dispositivos de red para asegurar el cumplimiento de las mejores prácticas.</li>
+                        <li><strong>Gestión Continua de Vulnerabilidades:</strong> Monitoreo y reporte periódico para mantener su postura de seguridad actualizada.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Servicio 2: Seguridad Ofensiva -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="100">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Seguridad Ofensiva y Red Teaming</h3>
+                    <p class="text-gray-600 mb-4">Vamos más allá de la identificación de vulnerabilidades, simulando ataques avanzados y persistentes para poner a prueba la capacidad de detección y respuesta de su organización.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Red Teaming:</strong> Ejercicios de ataque holísticos que simulan adversarios reales, evaluando personas, procesos y tecnología.</li>
+                        <li><strong>Ingeniería Social:</strong> Pruebas de phishing, vishing y pretexting para evaluar la concienciación de los empleados y la resistencia a los ataques dirigidos.</li>
+                        <li><strong>Explotación Avanzada de Vulnerabilidades:</strong> Desarrollo y ejecución de exploits personalizados para escenarios complejos.</li>
+                        <li><strong>Ataques a Infraestructura Crítica:</strong> Evaluación de la seguridad en sistemas SCADA/ICS y entornos OT.</li>
+                        <li><strong>Compromiso de Credenciales:</strong> Pruebas para identificar y explotar debilidades en la gestión de identidades y accesos.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Servicio 3: Respuesta a Incidentes -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Respuesta a Incidentes y Forense Digital</h3>
+                    <p class="text-gray-600 mb-4">Actuamos con rapidez y precisión para minimizar el impacto de los incidentes de seguridad, restaurar la normalidad operativa y aprender de cada evento para fortalecer sus defensas futuras.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Contención y Erradicación:</strong> Aislamiento de sistemas comprometidos y eliminación de la amenaza.</li>
+                        <li><strong>Análisis Forense Digital:</strong> Recopilación y análisis de evidencia digital para determinar la causa raíz, el alcance del ataque y los actores involucrados.</li>
+                        <li><strong>Recuperación y Post-Incidente:</strong> Asistencia en la restauración de sistemas y datos, y desarrollo de planes de mejora.</li>
+                        <li><strong>Planes de Respuesta a Incidentes:</strong> Creación y revisión de procedimientos para una gestión eficaz de futuros eventos.</li>
+                        <li><strong>Simulacros de Incidentes:</strong> Entrenamiento y pruebas de su equipo para asegurar una respuesta coordinada y efectiva.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Servicio 4: Consultoría en Ciberseguridad -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="300">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Consultoría Estratégica en Ciberseguridad</h3>
+                    <p class="text-gray-600 mb-4">Ofrecemos asesoramiento experto para desarrollar e implementar estrategias de seguridad integrales, alineadas con sus objetivos de negocio y el panorama de amenazas actual.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Diseño de Arquitecturas Seguras:</strong> Desarrollo de soluciones de seguridad robustas desde la fase de diseño.</li>
+                        <li><strong>Gobierno, Riesgo y Cumplimiento (GRC):</strong> Asesoramiento en el cumplimiento de normativas (GDPR, HIPAA, PCI DSS, ISO 27001) y gestión de riesgos.</li>
+                        <li><strong>Desarrollo de Políticas y Procedimientos de Seguridad:</strong> Creación de marcos de seguridad personalizados para su organización.</li>
+                        <li><strong>Formación y Concienciación en Ciberseguridad:</strong> Programas de capacitación para empleados a todos los niveles, desde lo básico hasta lo avanzado.</li>
+                        <li><strong>Evaluación de Madurez de Ciberseguridad:</strong> Análisis de su postura actual y hoja de ruta para mejoras.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Servicio 5: Desarrollo de Software Seguro (DevSecOps) -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="400">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Desarrollo de Software Seguro (DevSecOps)</h3>
+                    <p class="text-gray-600 mb-4">Integramos la seguridad en cada etapa del ciclo de vida del desarrollo de software (SDLC), asegurando que sus aplicaciones nazcan y se mantengan seguras.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Revisión de Código Seguro:</strong> Análisis manual y automatizado para identificar vulnerabilidades en el código fuente.</li>
+                        <li><strong>Implementación de DevSecOps:</strong> Integración de herramientas y prácticas de seguridad en sus pipelines de CI/CD.</li>
+                        <li><strong>Pruebas de Seguridad en SDLC:</strong> SAST (Static Application Security Testing), DAST (Dynamic Application Security Testing) e IAST (Interactive Application Security Testing).</li>
+                        <li><strong>Modelado de Amenazas:</strong> Identificación de posibles amenazas y diseño de contramedidas desde las primeras fases del proyecto.</li>
+                        <li><strong>Capacitación para Desarrolladores:</strong> Formación en prácticas de codificación segura y principios de seguridad.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Servicio 6: Seguridad en la Nube -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="500">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Seguridad en la Nube (Cloud Security)</h3>
+                    <p class="text-gray-600 mb-4">Protegemos sus activos y datos en entornos de nube pública, privada e híbrida, garantizando la confidencialidad, integridad y disponibilidad.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Evaluación de Seguridad en la Nube:</strong> Auditorías de configuración y cumplimiento en AWS, Azure, Google Cloud, etc.</li>
+                        <li><strong>Diseño e Implementación de Arquitecturas Seguras en la Nube:</strong> Creación de entornos cloud robustos y resilientes.</li>
+                        <li><strong>Gestión de Identidad y Acceso (IAM) en la Nube):</strong> Implementación de políticas de acceso granular y monitoreo de actividad.</li>
+                        <li><strong>Protección de Datos en la Nube:</strong> Estrategias de cifrado, DLP (Data Loss Prevention) y gestión de claves.</li>
+                        <li><strong>Monitoreo y Detección de Amenazas en la Nube:</strong> Implementación de soluciones SIEM/SOAR para visibilidad y respuesta.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Servicio 7: Seguridad Operacional (SOC como Servicio) -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="600">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Seguridad Operacional (SOC como Servicio)</h3>
+                    <p class="text-gray-600 mb-4">Ofrecemos un Centro de Operaciones de Seguridad (SOC) externalizado para monitorear, detectar y responder a amenazas 24/7, sin la necesidad de una inversión interna masiva.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Monitoreo Continuo de Amenazas:</strong> Vigilancia ininterrumpida de sus sistemas y redes.</li>
+                        <li><strong>Detección y Alerta Temprana:</strong> Uso de inteligencia de amenazas y análisis avanzado para identificar actividades sospechosas.</li>
+                        <li><strong>Gestión de Logs y Eventos (SIEM):</strong> Centralización y correlación de eventos de seguridad para una visibilidad completa.</li>
+                        <li><strong>Respuesta Gestionada a Incidentes:</strong> Nuestro equipo experto interviene rápidamente ante cualquier incidente detectado.</li>
+                        <li><strong>Reportes y Análisis de Tendencias:</strong> Información periódica sobre su postura de seguridad y las amenazas emergentes.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Servicio 8: Ciberinteligencia y Amenazas Persistentes Avanzadas (APT) -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="700">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Ciberinteligencia y APT Hunting</h3>
+                    <p class="text-gray-600 mb-4">Nos anticipamos a los ataques más sofisticados, utilizando inteligencia de amenazas para identificar y neutralizar actores maliciosos antes de que causen daño.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Análisis de Inteligencia de Amenazas:</strong> Recopilación y análisis de información sobre TTPs (Tácticas, Técnicas y Procedimientos) de atacantes.</li>
+                        <li><strong>APT Hunting (Caza de Amenazas Persistentes Avanzadas):</strong> Búsqueda proactiva de amenazas ocultas y persistentes en su red.</li>
+                        <li><strong>Análisis de Malware:</strong> Desmontaje y análisis de muestras de malware para entender su funcionamiento y capacidades.</li>
+                        <li><strong>Análisis de Atribución:</strong> Investigación para identificar a los posibles autores detrás de los ataques.</li>
+                        <li><strong>Alertas Tempranas Personalizadas:</strong> Notificaciones sobre amenazas específicas que podrían afectar a su sector o empresa.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Servicio 9: Seguridad de la Información y Gestión de Datos -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="800">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Seguridad de la Información y Gestión de Datos</h3>
+                    <p class="text-gray-600 mb-4">Implementamos medidas para proteger la confidencialidad, integridad y disponibilidad de sus datos más valiosos, desde su creación hasta su eliminación.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Clasificación y Etiquetado de Datos:</strong> Organización de la información según su sensibilidad y criticidad.</li>
+                        <li><strong>Cifrado de Datos:</strong> Implementación de soluciones de cifrado para datos en reposo y en tránsito.</li>
+                        <li><strong>Prevención de Pérdida de Datos (DLP):</strong> Detección y prevención de la exfiltración no autorizada de información sensible.</li>
+                        <li><strong>Gestión de Derechos Digitales (DRM):</strong> Control sobre el acceso y uso de documentos y archivos.</li>
+                        <li><strong>Auditoría de Acceso a Datos:</strong> Monitoreo de quién accede a qué datos y cuándo.</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 10: Gestión de Identidad y Acceso (IAM/PAM) -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="900">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Gestión de Identidad y Acceso (IAM/PAM)</h3>
+                    <p class="text-gray-600 mb-4">Controlamos y protegemos el acceso a sus sistemas y datos, asegurando que solo los usuarios autorizados tengan los privilegios adecuados, minimizando el riesgo de accesos no deseados.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Gestión de Identidades (IAM):</strong> Implementación de soluciones para la creación, gestión y eliminación de identidades digitales.</li>
+                        <li><strong>Gestión de Acceso Privilegiado (PAM):</strong> Protección, monitoreo y gestión de cuentas con altos privilegios.</li>
+                        <li><strong>Autenticación Multifactor (MFA):</strong> Despliegue de capas adicionales de seguridad para la verificación de identidad.</li>
+                        <li><strong>Single Sign-On (SSO):</strong> Simplificación del acceso a múltiples aplicaciones con una única credencial.</li>
+                        <li><strong>Auditoría de Acceso y Privilegios:</strong> Revisión periódica de los permisos para asegurar el principio de mínimo privilegio.</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 11: Seguridad de Sistemas de Control Industrial (ICS/OT) e IoT -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="1000">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Seguridad de Sistemas de Control Industrial (ICS/OT) e IoT</h3>
+                    <p class="text-gray-600 mb-4">Extendemos la protección a sus entornos operativos y dispositivos conectados, crucial para sectores como manufactura, energía y servicios públicos, donde la interrupción puede tener consecuencias graves.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Evaluación de Riesgos ICS/OT:</strong> Identificación de vulnerabilidades específicas en infraestructuras críticas.</li>
+                        <li><strong>Segmentación de Redes OT:</strong> Aislamiento de sistemas operativos para contener posibles ataques.</li>
+                        <li><strong>Seguridad de Dispositivos IoT:</strong> Evaluación y aseguramiento de dispositivos conectados, desde sensores hasta maquinaria inteligente.</li>
+                        <li><strong>Monitoreo de Anomalías en OT:</strong> Detección de comportamientos inusuales que puedan indicar un compromiso.</li>
+                        <li><strong>Planes de Contingencia para ICS/OT:</strong> Desarrollo de estrategias para la recuperación ante incidentes en entornos operativos.</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 12: CISO Virtual (vCISO) y Asesoría Ejecutiva -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="1100">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">CISO Virtual (vCISO) y Asesoría Ejecutiva</h3>
+                    <p class="text-gray-600 mb-4">Ofrecemos liderazgo en ciberseguridad a nivel ejecutivo sin la necesidad de un puesto a tiempo completo. Nuestros expertos actúan como su Chief Information Security Officer (CISO) para guiar su estrategia de seguridad.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Desarrollo de Estrategia de Ciberseguridad:</strong> Creación de una hoja de ruta de seguridad a largo plazo.</li>
+                        <li><strong>Gestión de Programas de Seguridad:</strong> Supervisión de la implementación de iniciativas de seguridad.</li>
+                        <li><strong>Asesoramiento a la Junta Directiva:</strong> Presentación de informes de riesgo y estado de seguridad a la alta dirección.</li>
+                        <li><strong>Gestión de Proveedores de Seguridad:</strong> Evaluación y supervisión de terceros que ofrecen servicios de seguridad.</li>
+                        <li><strong>Cumplimiento y Auditoría Interna:</strong> Aseguramiento de que la organización cumple con las regulaciones y estándares internos.</li>
+                    </ul>
+                </div>
+
+                <!-- NUEVO Servicio: Diseño y Desarrollo Web -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="1200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Diseño y Desarrollo Web</h3>
+                    <p class="text-gray-600 mb-4">Creamos sitios web a medida, desde código puro para máximo rendimiento y personalización, hasta plataformas basadas en CMS, adaptándonos a sus necesidades y objetivos específicos.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Desarrollo en Código Puro:</strong> Sitios web optimizados, rápidos y escalables, con control total sobre cada aspecto.</li>
+                        <li><strong>Desarrollo con CMS:</strong> Implementación y personalización en plataformas como WordPress, Joomla, etc., para fácil gestión de contenido.</li>
+                        <li><strong>Diseño Responsivo:</strong> Aseguramos que su sitio se vea y funcione perfectamente en cualquier dispositivo (móvil, tablet, escritorio).</li>
+                        <li><strong>Optimización SEO:</strong> Implementación de prácticas para mejorar la visibilidad en motores de búsqueda.</li>
+                        <li><strong>Mantenimiento y Soporte:</strong> Servicios continuos para asegurar el funcionamiento óptimo y la seguridad de su sitio.</li>
+                    </ul>
+                </div>
+
+                <!-- NUEVO Servicio: Hacking Ético y Pruebas de Intrusión -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="1300">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Hacking Ético y Pruebas de Intrusión</h3>
+                    <p class="text-gray-600 mb-4">Simulamos ataques cibernéticos con fines defensivos para identificar y corregir vulnerabilidades antes de que sean explotadas por actores maliciosos. Nuestro equipo de hackers éticos evalúa la seguridad de sus sistemas de forma proactiva.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Pentesting de Redes:</strong> Evaluación de la seguridad de su infraestructura de red interna y externa.</li>
+                        <li><strong>Pentesting de Aplicaciones Web/Móviles:</strong> Identificación de fallas de seguridad en sus aplicaciones.</li>
+                        <li><strong>Auditorías de Configuración:</strong> Revisión de la seguridad de servidores, bases de datos y dispositivos.</li>
+                        <li><strong>Simulacros de Ataque Dirigido:</strong> Emulación de ataques avanzados para probar la resiliencia de su organización.</li>
+                        <li><strong>Reportes Detallados y Recomendaciones:</strong> Documentación clara de vulnerabilidades y pasos para su remediación.</li>
+                    </ul>
+                </div>
+
+                <!-- NUEVO Servicio: Espionaje Corporativo y Contrainteligencia -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="1400">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Espionaje Corporativo y Contrainteligencia</h3>
+                    <p class="text-gray-600 mb-4">Protegemos su información sensible y activos estratégicos de amenazas internas y externas, incluyendo la fuga de información, el robo de propiedad intelectual y la vigilancia no autorizada. Nuestros servicios de contrainteligencia están diseñados para salvaguardar la ventaja competitiva de su empresa.</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Análisis de Amenazas Internas:</strong> Detección y prevención de actividades maliciosas por parte de empleados o ex-empleados.</li>
+                        <li><strong>Protección de Propiedad Intelectual:</strong> Estrategias para evitar el robo o la divulgación de secretos comerciales.</li>
+                        <li><strong>Auditorías de Seguridad Física y Lógica:</strong> Evaluación de puntos débiles que podrían ser explotados para espionaje.</li>
+                        <li><strong>Investigación de Fugas de Información:</strong> Rastreo y análisis de la procedencia de datos comprometidos.</li>
+                        <li><strong>Programas de Concienciación Anti-Espionaje:</strong> Capacitación para su personal sobre cómo identificar y reportar actividades sospechosas.</li>
+                    </ul>
+                </div>
+
+                <!-- NUEVO Servicio: Desarrollo de Campañas Políticas de Alto Impacto Comunicativo -->
+                <div class="card-glass card-border-dphack p-6 fade-in-up" data-delay="1500">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Desarrollo de Campañas Políticas de Alto Impacto Comunicativo</h3>
+                    <p class="text-gray-600 mb-4">Diseñamos y ejecutamos estrategias de comunicación política innovadoras y efectivas, basadas en análisis de datos, estadísticas y cifras reales de nuestro alcance, para asegurar el máximo impacto y conexión con el electorado. Desde la conceptualización hasta la difusión, cada campaña es optimizada para resonar con su audiencia objetivo.</p>
+                    <img src="./assets/campaña no ayuda.jpg" alt="Imagen de Campaña Política" class="w-full h-auto rounded-lg mt-4 mb-2 max-w-xs mx-auto shadow-md">
+                    <ul class="list-disc list-inside text-gray-600 text-sm">
+                        <li><strong>Análisis de Audiencia y Segmentación:</strong> Identificación de grupos demográficos clave y sus intereses.</li>
+                        <li><strong>Estrategia de Mensaje:</strong> Creación de narrativas convincentes y coherentes.</li>
+                        <li><strong>Gestión de Medios Digitales y Tradicionales:</strong> Coordinación de pautas en nuestra red de medios y aliados.</li>
+                        <li><strong>Marketing Político Digital:</strong> Campañas en redes sociales, email marketing y publicidad online.</li>
+                        <li><strong>Monitoreo y Análisis de Resultados:</strong> Seguimiento constante del impacto de la campaña con métricas reales.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- NUEVA Sección de Precios DPHACK-SERVICES -->
+            <div class="col-span-1 md:col-span-3 card-glass p-8 mt-12 fade-in-up" data-delay="1600">
+                <h3 class="sub-section-heading text-gray-800">Modelos de Inversión y Precios Estimados (DPHACK-SERVICES)</h3>
+                <p class="text-gray-700 mb-6">Nuestros servicios de ciberseguridad y desarrollo web se adaptan a la complejidad y escala de sus necesidades. A continuación, presentamos nuestros modelos de contratación y rangos de inversión para que tenga una idea clara de cómo podemos proteger y potenciar su negocio.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <!-- Precios de Diseño y Desarrollo Web -->
+                    <div class="package-card">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-4">Diseño y Desarrollo Web</h4>
+                        <p class="text-gray-700 mb-4">Creamos su presencia digital con la más alta calidad.</p>
+                        <ul class="package-details package-details-dphack text-gray-600 text-sm space-y-3">
+                            <li>
+                                <strong>Paquete Básico:</strong> Landing Page o Web Informativa (5-7 secciones).
+                                <br><span class="price-text price-text-dphack">Desde $3.500.000 COP</span>
+                                <p class="text-xs text-gray-500 mt-1">Ideal para iniciar su presencia online con un diseño profesional y responsivo.</p>
+                            </li>
+                            <li>
+                                <strong>Paquete Profesional:</strong> Web Corporativa o E-commerce (hasta 20 productos).
+                                <br><span class="price-text price-text-dphack">Desde $8.000.000 COP</span>
+                                <p class="text-xs text-gray-500 mt-1">Funcionalidades avanzadas, integración de pagos, gestión de usuarios, SEO básico.</p>
+                            </li>
+                            <li>
+                                <strong>Paquete Premium/A Medida:</strong> Proyectos complejos, plataformas personalizadas, integraciones avanzadas.
+                                <br><span class="price-text price-text-dphack">Cotización Personalizada</span>
+                                <p class="text-xs text-gray-500 mt-1">Desarrollos únicos que requieren un análisis detallado de sus requerimientos.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Precios de Ciberseguridad y Servicios Especializados -->
+                    <div class="package-card">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-4">Ciberseguridad y Servicios Especializados</h4>
+                        <p class="text-gray-700 mb-4">Protección avanzada para su infraestructura y operaciones.</p>
+                        <ul class="package-details package-details-dphack text-gray-600 text-sm space-y-3">
+                            <li>
+                                <strong>Análisis de Vulnerabilidades (Inicial):</strong>
+                                <br><span class="price-text price-text-dphack">Desde $2.500.000 COP</span>
+                                <p class="text-xs text-gray-500 mt-1">Evaluación de una aplicación web o un segmento de red pequeño.</p>
+                            </li>
+                            <li>
+                                <strong>Pruebas de Penetración (Pentesting):</strong>
+                                <br><span class="price-text price-text-dphack">Cotización Personalizada</span>
+                                <p class="text-xs text-gray-500 mt-1">Basado en el alcance, complejidad y duración. Incluye simulación de ataques y reporte detallado.</p>
+                            </li>
+                            <li>
+                                <strong>Respuesta a Incidentes y Forense Digital:</strong>
+                                <br><span class="price-text price-text-dphack">Tarifa por Hora: Desde $600.000 COP</span>
+                                <br><span class="price-text price-text-dphack">Retainer Mensual: Cotización Personalizada</span>
+                                <p class="text-xs text-gray-500 mt-1">Servicio de emergencia y planes de retención para respuesta rápida.</p>
+                            </li>
+                            <li>
+                                <strong>Hacking Ético y Espionaje Corporativo:</strong>
+                                <br><span class="price-text price-text-dphack">Cotización Personalizada</span>
+                                <p class="text-xs text-gray-500 mt-1">Servicios altamente especializados que requieren un análisis previo del caso.</p>
+                            </li>
+                            <li>
+                                <strong>Consultoría CISO Virtual (vCISO) / SOC como Servicio:</strong>
+                                <br><span class="price-text price-text-dphack">Cotización Mensual: Desde $4.000.000 COP</span>
+                                <p class="text-xs text-gray-500 mt-1">Liderazgo estratégico en ciberseguridad y monitoreo 24/7 de su infraestructura.</p>
+                            </li>
+                            <li>
+                                <strong>Desarrollo de Campañas Políticas de Alto Impacto Comunicativo:</strong>
+                                <br><span class="price-text price-text-dphack">Cotización Personalizada</span>
+                                <p class="text-xs text-gray-500 mt-1">Estrategias integrales basadas en datos y alcance real, adaptadas a sus objetivos.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-center text-gray-600 mt-8 text-sm">Para obtener una cotización precisa y adaptada a sus necesidades, le invitamos a contactarnos directamente. Realizaremos un análisis detallado para ofrecerle la mejor solución al mejor precio competitivo.</p>
+            </div>
+        </section>
+
+        <!-- Divisor de Sección -->
+        <div class="section-divider fade-in-up"></div>
+
+        <!-- Sección de Servicios El Informativo La Región -->
+        <section id="informativo-la-region-services" class="w-full max-w-6xl mt-16 p-6 section-bg-informativo rounded-2xl shadow-xl border border-green-200">
+            <div class="flex items-center justify-center mb-8 fade-in-up">
+                <img src="./assets/logo-informativo.jpg" alt="Logo El Informativo La Región" class="w-24 h-auto mr-4 opacity-90">
+                <h2 class="section-heading text-gray-800">Servicios de El Informativo La Región</h2>
+            </div>
+            <p class="text-center text-gray-700 mb-8 max-w-4xl mx-auto fade-in-up" data-delay="100">Con 15 años de trayectoria, El Informativo La Región es un líder en comunicación estratégica, ofreciendo un vasto ecosistema de medios propios y aliados para maximizar la difusión de su mensaje y conectar con audiencias clave a nivel regional, nacional e internacional.</p>
+            <p class="text-center text-gray-700 mb-10 max-w-4xl mx-auto font-semibold fade-in-up" data-delay="200">Nuestro objetivo es que sus campañas, convocatorias y servicios se vean reflejados en nuestra extensa red de medios.</p>
+
+            <div class="space-y-12">
+                <!-- Sub-sección: Medios Propios y Plataformas Principales -->
+                <div class="card-glass card-border-informativo p-6 fade-in-up">
+                    <h3 class="sub-section-heading text-gray-800 sub-section-heading-informativo">Medios Propios y Plataformas Principales</h3>
+                    <p class="text-gray-600 mb-4">Nacimos hace 15 años con un periódico impreso y hemos evolucionado para construir una sólida presencia digital y multimedia.</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li><strong>Periódico Impreso:</strong> En Yarumal, Antioquia (16 páginas, color, 28x42cm, ISNN 2248-8979).</li>
+                        <li><strong>Redes Sociales:</strong> YouTube, Facebook, Instagram, X (Twitter), LinkedIn, Spotify y Rumble.</li>
+                        <li><strong>Emisora Online:</strong> Nuestra propia estación de radio digital.</li>
+                        <li><strong>Portal de Noticias:</strong> <a href="www.prensalaregion.com" target="_blank" class="text-blue-600 hover:underline">www.prensalaregion.com</a> - Cobertura y publicidad digital.</li>
+                        <li><strong>Magazín La Región:</strong> Disponible en Facebook.</li>
+                        <li><strong>Noticiero Estelar Internacional La Región:</strong> Cobertura a nivel internacional.</li>
+                        <img src="./assets/emision estelar pauta.jpg" alt="Imagen de Emisión Estelar de Pauta" class="w-full h-auto rounded-lg mt-4 mb-2 max-w-xs mx-auto shadow-md">
+                        <li><strong>Canal Digital de Televisión:</strong> <a href="www.laregiontv.com" target="_blank" class="text-blue-600 hover:underline">www.laregiontv.com</a> - Su ventana a la televisión digital.</li>
+                    </ul>
+
+                    <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Publicidad en Medios Digitales Propios</h4>
+                    <div class="overflow-x-auto">
+                        <table class="media-table media-table-informativo">
+                            <thead>
+                                <tr>
+                                    <th>Medio</th>
+                                    <th>Espacio</th>
+                                    <th>Dimensiones (PX) / Duración</th>
+                                    <th>Valor Mensual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Revista Digital 3D (40 páginas)</td>
+                                    <td>Página Completa</td>
+                                    <td>N/A</td>
+                                    <td>$ 1.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Revista Digital 3D (40 páginas)</td>
+                                    <td>Media Página</td>
+                                    <td>N/A</td>
+                                    <td>$ 550.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Revista Digital 3D (40 páginas)</td>
+                                    <td>Un Cuarto de Página</td>
+                                    <td>N/A</td>
+                                    <td>$ 350.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.prensalaregion.com</td>
+                                    <td>Banner Superior (Animado)</td>
+                                    <td>1380 x 250 PX (15 seg)</td>
+                                    <td>$ 800.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.prensalaregion.com</td>
+                                    <td>Banner Superior (Animado)</td>
+                                    <td>1024 x 100 PX (10 seg)</td>
+                                    <td>$ 400.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.prensalaregion.com</td>
+                                    <td>Banner Central/Inferior (Animado)</td>
+                                    <td>500 x 250 PX (10 seg)</td>
+                                    <td>$ 300.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.prensalaregion.com</td>
+                                    <td>Banner Central/Inferior (Animado)</td>
+                                    <td>800 x 250 PX (10 seg)</td>
+                                    <td>$ 350.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.prensalaregion.com</td>
+                                    <td>Banner Central/Inferior (Animado)</td>
+                                    <td>250 x 250 PX (10 seg)</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.laregiontv.com (Web)</td>
+                                    <td>Banner Superior (Animado)</td>
+                                    <td>1380 x 250 PX (15 seg)</td>
+                                    <td>$ 900.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.laregiontv.com (Web)</td>
+                                    <td>Banner Superior (Animado)</td>
+                                    <td>1024 x 100 PX (10 seg)</td>
+                                    <td>$ 450.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.laregiontv.com (Web)</td>
+                                    <td>Banner Central/Inferior (Animado)</td>
+                                    <td>500 x 250 PX (10 seg)</td>
+                                    <td>$ 300.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.laregiontv.com (Web)</td>
+                                    <td>Banner Central/Inferior (Animado)</td>
+                                    <td>800 x 250 PX (10 seg)</td>
+                                    <td>$ 350.000</td>
+                                </tr>
+                                <tr>
+                                    <td>www.laregiontv.com (Web)</td>
+                                    <td>Banner Central/Inferior (Animado)</td>
+                                    <td>250 x 250 PX (10 seg)</td>
+                                    <td>$ 250.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Canal Digital de TV (laregiontv.com)</td>
+                                    <td>Espacio Semanal</td>
+                                    <td>1 Hora</td>
+                                    <td>$ 1.800.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Canal Digital de TV (laregiontv.com)</td>
+                                    <td>Espacio Semanal</td>
+                                    <td>Media Hora</td>
+                                    <td>$ 900.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Redes Sociales (IG, FB, YT, X, Rumble)</td>
+                                    <td>Publicidad Mensual</td>
+                                    <td>Un mes</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Sub-sección: Medios Aliados - Radio FM y Online -->
+                <div class="card-glass card-border-informativo p-6 fade-in-up" data-delay="100">
+                    <h3 class="sub-section-heading text-gray-800 sub-section-heading-informativo">Medios Aliados: Radio FM y Online</h3>
+                    <p class="text-gray-600 mb-4">Acceda a una vasta red de emisoras comunitarias y online con gran impacto regional y nacional.</p>
+
+                    <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Emisoras Comunitarias en FM (Antioquia)</h4>
+                    <p class="text-gray-700 mb-2">Cuñas radiales de 20 segundos (valores aproximados):</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                        <li>Nordeste Stereo (Remedios): $ 18.000</li>
+                        <li>Buritica Stereo (Buritica): $ 18.000</li>
+                        <li>Segovia Stereo: $ 17.000</li>
+                        <li>Yali Stereo (Yali): $ 17.000</li>
+                        <li>Brillante Stereo (Barbosa): $ 20.000</li>
+                        <li>Alternativa Stereo (Girardota): $ 20.000</li>
+                        <li>Magna Stereo (Envigado): $ 30.000</li>
+                        <li>Radio San Buenaventura Stereo (Bello): $ 30.000</li>
+                        <li>AR Stereo (La Floresta): $ 27.000</li>
+                        <li>Anori Stereo: $ 25.000</li>
+                        <li>Cáceres Stereo: $ 18.000</li>
+                        <li>Caucasia Stereo: $ 18.000</li>
+                        <li>El Bagre Digital Estero: $ 18.000</li>
+                        <li>Tarazà Stereo: $ 20.000</li>
+                        <li>La Voz Gabrielista (Caracolí): $ 18.000</li>
+                        <li>Maceo Stereo: $ 17.000</li>
+                        <li>Puerto Berrio Stereo: $ 25.000</li>
+                        <li>La Voz de Don Matias: $ 20.000</li>
+                        <li>Radio Primavera (Gómez Plata): $ 20.000</li>
+                        <li>Radio Más (Santa Rosa de Osos): $ 30.000</li>
+                        <li>Cerro Azul (Yarumal): $ 25.000</li>
+                        <li>Ecos de Frontino: $ 17.000</li>
+                        <li>Ondas del Tonusco (Santa Fe de Antioquia): $ 20.000</li>
+                        <li>Guarne Stereo: $ 20.000</li>
+                        <li>Radio Galáctica Stereo (Marinilla): $ 18.000</li>
+                        <li>Fénix de Oriente: $ 18.000</li>
+                        <li>Rionegro Stereo: $ 20.000</li>
+                        <li>Omega Digital (Andes): $ 25.000</li>
+                        <li>La Voz del Suroeste (Jericó): $ 20.000</li>
+                        <li>Radio Litoral (Turbo): $ 25.000</li>
+                        <li>Banana Stereo (Chigorodó): $ 25.000</li>
+                        <li>La Reina Internacional (Montería): $ 20.000</li>
+                        <li>Apartadó Stereo: $ 23.000</li>
+                        <li>Ecos del Atrato (Chocó): $ 18.000</li>
+                    </ul>
+
+                    <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Emisoras en FM (Otras Regiones)</h4>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-2">
+                        <li><strong>Emisora La Veterana (Líbano, Tolima):</strong> Cubre 9 departamentos (Tolima, Cundinamarca, Bajo Magdalena, Caldas, Huila, Santander, Meta, Arauca, Boyacá, Quindío, Risaralda, Antioquia, Cesar).
+                            <table class="media-table media-table-informativo">
+                                <thead>
+                                    <tr>
+                                        <th>Espacio Publicitario</th>
+                                        <th>Duración</th>
+                                        <th>Valor (Unitario)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Comercial en musical</td><td>30”</td><td>$55.000</td></tr>
+                                    <tr><td>Comercial en noticieros</td><td>30”</td><td>$65.000</td></tr>
+                                    <tr><td>Comercial en noticieros</td><td>20”</td><td>$55.000</td></tr>
+                                    <tr><td>Comercial “Pal rancho”</td><td>30”</td><td>$55.000</td></tr>
+                                    <tr><td>Comercial “Pal rancho”</td><td>20”</td><td>$40.000</td></tr>
+                                    <tr><td>Publireportaje</td><td>5 min</td><td>$1.100.000</td></tr>
+                                    <tr><td colspan="3">Bonificados: Por cada 3 pautas pagadas se bonifica 1.</td></tr>
+                                </tbody>
+                            </table>
+                        </li>
+                        <li><strong>Emisora La Morenita (Tunja):</strong> Detalles de pauta por propuesta.</li>
+                        <li><strong>Ecos de Rosario (Anolaima, Cundinamarca):</strong> 5 cuñas diarias de 30 seg por 30 días - $ 1.800.000</li>
+                        <li><strong>Unilatina Radio (Facatativá, Cundinamarca):</strong> 5 cuñas diarias de 30 seg por 30 días - $ 3.400.000</li>
+                        <li><strong>Radio El Sol (Anapoima, Cundinamarca):</strong> 5 cuñas diarias de 30 seg por 30 días - $ 1.850.000</li>
+                        <li><strong>Radio Rumbos (Soacha, Cundinamarca):</strong> 6 cuñas diarias de 30 seg por 30 días - $ 1.100.000</li>
+                        <li><strong>Emisora San Jacinto Stereo (Guasca, Cundinamarca):</strong> 10 cuñas diarias de 30 seg - $ 700.000</li>
+                        <li><strong>Emisora Manantial Stereo (Sutatausa, Cundinamarca):</strong> 5 cuñas diarias de 30 seg por un mes - $ 1.100.000</li>
+                        <li><strong>La Voz de Cáqueza (Cundinamarca):</strong> 10 cuñas diarias de 30 seg por un mes - $ 800.000 (Cobertura en Cáqueza, Chipaque, Une, Fosca, Ubaque, Quetame, Choachi, Fomeque, Guayabetal a través de 91.6 FM y app <a href="www.lavozdecaqueza.co" target="_blank" class="text-blue-600 hover:underline">www.lavozdecaqueza.co</a>)</li>
+                    </ul>
+
+                    <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Emisoras Online Aliadas</h4>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-2">
+                        <li><strong>Rec Mi Ciudad Radio (<a href="www.recmiciudadradio.com" target="_blank" class="text-blue-600 hover:underline">www.recmiciudadradio.com</a>, Itagüí):</strong> Cuña de 20 segundos - $ 20.000.
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Magazine "Hablemos Claro": Lunes, Miércoles y Viernes de 3:00 a 4:00 p.m. (enlazado con varios medios). Cuña de 20 segundos - $ 40.000.</li>
+                                <li>Espacio de una hora semanal (4 horas/mes): $ 2.800.000 (solo emisión, producción y edición $ 400.000/programa).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Jadu Radio (<a href="www.jaduradio.com" target="_blank" class="text-blue-600 hover:underline">www.jaduradio.com</a>, Barbosa):</strong> Cuña de 20 segundos - $ 20.000.</li>
+                        <li><strong>Extrema FM (Buritica):</strong> Cuña de 20 segundos - $ 20.000.</li>
+                        <li><strong>La Bomba (Amalfi):</strong> Cuña de 20 segundos - $ 20.000.</li>
+                        <li><strong>Canica Radio (<a href="www.canicaradio.com" target="_blank" class="text-blue-600 hover:underline">www.canicaradio.com</a>, Chía, Cundinamarca):</strong> Magazine "Hablemos en Serio con Fredy Gómez" (Jueves 2:00 p.m., más de 200.000 oyentes). Cuña de 20 segundos - $ 45.000. 12 cuñas por un mes de 30 segundos - $ 500.000.</li>
+                        <img src="./assets/magazine hablemos en serio con fredy.jpg" alt="Imagen de Magazine Hablemos en Serio con Fredy" class="w-full h-auto rounded-lg mt-4 mb-2 max-w-xs mx-auto shadow-md">
+                    </ul>
+                </div>
+
+                <!-- Sub-sección: Medios Aliados - Plataformas Digitales y Revistas -->
+                <div class="card-glass card-border-informativo p-6 fade-in-up" data-delay="200">
+                    <h3 class="sub-section-heading text-gray-800 sub-section-heading-informativo">Medios Aliados: Plataformas Digitales y Revistas</h3>
+                    <p class="text-gray-600 mb-4">Amplifique su mensaje a través de nuestra red de sitios web y publicaciones digitales.</p>
+
+                    <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Plataformas Digitales Aliadas</h4>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-2">
+                        <li><strong>FACETA 5 (Barbosa):</strong> 26.000 seguidores. Publicidad mensual: $ 200.000.</li>
+                        <li><strong>Cristobal Naranjo (<a href="www.cristobalnaranjo.com" target="_blank" class="text-blue-600 hover:underline">www.cristobalnaranjo.com</a>):</strong> Cuña de 20 segundos - $ 25.000.</li>
+                        <li><strong>Rec Mi Ciudad Radio (<a href="www.recmiciudadradio.com" target="_blank" class="text-blue-600 hover:underline">www.recmiciudadradio.com</a>):</strong> Cuña de 20 segundos - $ 23.000.</li>
+                        <li><strong>Mi Gente Stereo (<a href="www.migentestereo.com" target="_blank" class="text-blue-600 hover:underline">www.migentestereo.com</a>):</strong> Cuña de 20 segundos - $ 23.000.</li>
+                        <li><strong>Juan Paz (<a href="www.juanpaz.com" target="_blank" class="text-blue-600 hover:underline">www.juanpaz.com</a>):</strong> Publicidad en página web desde $ 300.000 hasta $ 1.800.000.</li>
+                        <li><strong>La Veterana (Redes Sociales y Plataformas):</strong>
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Facebook/Instagram: 473 mil personas de alcance, 75.8 mil por publicación.</li>
+                                <li>Página Web (<a href="www.laveteranacentro.com" target="_blank" class="text-blue-600 hover:underline">www.laveteranacentro.com</a>): Más de 6.800.000 visitas.</li>
+                                <li>Página Web (<a href="www.enfoqueregional.com" target="_blank" class="text-blue-600 hover:underline">www.enfoqueregional.com</a>): Disponible.</li>
+                                <li>Canal de TV propio (Canal 01): Fibra Plus Líbano Tolima (más de 2.700 afiliados).</li>
+                                <li>APP La Veterana: Play Store y App Store.</li>
+                                <li>Radio Box: Alcance internacional por la Web.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Revistas Digitales Aliadas</h4>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-2">
+                        <li><strong>La Revista Colombiana (<a href="www.larevistacolombiana.com" target="_blank" class="text-blue-600 hover:underline">www.larevistacolombiana.com</a>):</strong> Precios desde $ 400.000 a $ 1.800.000.</li>
+                        <li><strong>Estilo Gerencial (<a href="www.estilogerencial.com" target="_blank" class="text-blue-600 hover:underline">www.estilogerencial.com</a>):</strong> Precios desde $ 400.000 a $ 1.800.000.</li>
+                    </ul>
+
+                    <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Noticieros Aliados</h4>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-2">
+                        <li><strong>Noticiero Al Día con Héctor Bermúdez:</strong> Cuña - $ 30.000.</li>
+                        <li><strong>Analizando con Hernando Arango:</strong> Cuña de 20 segundos - $ 35.000.</li>
+                    </ul>
+                </div>
+
+                <!-- Sub-sección: Campañas de Comunicación Estratégica -->
+                <div class="card-glass card-border-informativo p-6 col-span-1 md:col-span-2 fade-in-up" data-delay="300">
+                    <h3 class="sub-section-heading text-gray-800 sub-section-heading-informativo">Campañas de Comunicación Estratégica</h3>
+                    <p class="text-gray-600 mb-4">Contamos con 15 años de experiencia en el diseño y ejecución de campañas de comunicación estratégica. Nuestro enfoque está orientado a maximizar la difusión de mensajes clave a través de medios tradicionales y digitales, asegurando un impacto significativo en la comunidad con más de 40 alianzas de medios en Colombia.</p>
+                    <img src="./assets/pauta eventos la region.jpg" alt="Imagen de Pauta de Eventos La Región" class="w-full h-auto rounded-lg mt-4 mb-2 max-w-xs mx-auto shadow-md">
+                    <p class="text-gray-600 mb-4">Desarrollamos una estrategia de comunicación integral que permite a su entidad fortalecer su vínculo con sus clientes, promoviendo transparencia, inclusión y el acceso a información clave.</p>
+                    <p class="text-gray-600 mb-4">Ofrecemos opciones de publicidad en radio y multiplataformas digitales, con el objetivo de ayudar a las empresas a alcanzar su público objetivo y aumentar su visibilidad en el mercado.</p>
+                    <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Beneficios de la Publicidad Integrada</h4>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-2">
+                        <li>Mayor visibilidad y reconocimiento de marca.</li>
+                        <li>Aumento en la conciencia y consideración del producto o servicio.</li>
+                        <li>Acceso a nuestra audiencia comprometida y en crecimiento, tanto en radio como en plataformas digitales.</li>
+                    </ul>
+                    <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Condiciones y Requisitos</h4>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-2">
+                        <li>Pago anticipado requerido.</li>
+                        <li>Contrato mínimo de 3 meses.</li>
+                        <li>Material publicitario debe ser proporcionado por el cliente con anticipación (imágenes en JPG, PNG; banners animados en GIF o SWF/Flash).</li>
+                    </ul>
+                </div>
+
+                <!-- NUEVA Sub-sección: Paquetes de Publicidad Integrada -->
+                <div class="card-glass card-border-informativo p-6 col-span-1 md:col-span-2 fade-in-up" data-delay="400">
+                    <h3 class="sub-section-heading text-gray-800 sub-section-heading-informativo">Paquetes de Publicidad Integrada</h3>
+                    <p class="text-gray-600 mb-4">Maximice su impacto con nuestros paquetes diseñados para ofrecer una cobertura completa a través de nuestros diversos medios.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                        <!-- Paquete 1 -->
+                        <div class="package-card package-card-informativo">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">PAQUETE 1</h4>
+                            <ul class="package-details text-gray-600 text-sm space-y-1">
+                                <li>Espacios en TV digital</li>
+                                <li>Publicaciones Diarias en nuestras 3 páginas web</li>
+                                <li>Publicaciones Diarias en Redes Sociales</li>
+                                <li>Anuncio de Video Publicitario semanal</li>
+                                <li>Anuncio para radio publicitario semanal</li>
+                                <li>Menciones y presencia de marca de todas nuestras radios aliadas</li>
+                            </ul>
+                            <p class="price-text mt-4">POR SOLO $1.399.000</p>
+                            <p class="text-sm text-gray-700">Con descuento de 25% por contrato de 3 meses</p>
+                        </div>
+
+                        <!-- Paquete 2 -->
+                        <div class="package-card package-card-informativo">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">PAQUETE 2</h4>
+                            <ul class="package-details text-gray-600 text-sm space-y-1">
+                                <li>Espacios en TV digital</li>
+                                <li>Publicaciones Diarias en nuestras 3 páginas web</li>
+                                <li>Publicaciones Diarias en Redes Sociales</li>
+                                <li>Anuncio de Video Publicitario semanal</li>
+                                <li>Anuncio para radio publicitario semanal</li>
+                                <li>Menciones y presencia de marca de todas nuestras radios aliadas</li>
+                            </ul>
+                            <p class="price-text mt-4">POR SOLO $1.399.000</p>
+                            <p class="text-sm text-gray-700">Con descuento de 20% por contrato de 2 meses</p>
+                        </div>
+
+                        <!-- Paquete 3 -->
+                        <div class="package-card package-card-informativo">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">PAQUETE 3</h4>
+                            <ul class="package-details text-gray-600 text-sm space-y-1">
+                                <li>Espacios en TV digital</li>
+                                <li>Publicaciones Diarias en nuestras 3 páginas web</li>
+                                <li>Publicaciones Diarias en Redes Sociales</li>
+                                <li>Anuncio de Video Publicitario semanal</li>
+                                <li>Anuncio para radio publicitario semanal</li>
+                                <li>Menciones y presencia de marca de todas nuestras radios aliadas</li>
+                            </ul>
+                            <p class="price-text mt-4">POR SOLO $1.399.000</p>
+                            <p class="text-sm text-gray-700">Con descuento de 40% por contrato de 3 meses (CON PAGO ANTICIPADO)</p>
+                        </div>
+
+                        <!-- Paquete 4 -->
+                        <div class="package-card package-card-informativo">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">PAQUETE 4</h4>
+                            <ul class="package-details text-gray-600 text-sm space-y-1">
+                                <li>Espacios en TV digital</li>
+                                <li>Publicaciones Diarias en nuestras 3 páginas web</li>
+                                <li>Publicaciones Diarias en Redes Sociales</li>
+                                <li>Anuncio de Video Publicitario semanal</li>
+                                <li>Anuncio para radio publicitario semanal</li>
+                                <li>Menciones y presencia de marca de todas nuestras radios aliadas</li>
+                            </ul>
+                            <p class="price-text mt-4">POR SOLO $999.000</p>
+                            <p class="text-sm text-gray-700">Con descuento de 40% por contrato de 3 meses (CON PAGO ANTICIPADO)</p>
+                        </div>
+
+                        <!-- Paquete 5 -->
+                        <div class="package-card package-card-informativo">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">PAQUETE 5</h4>
+                            <ul class="package-details text-gray-600 text-sm space-y-1">
+                                <li>Espacios en TV digital</li>
+                                <li>Publicaciones Diarias en nuestras 3 páginas web</li>
+                                <li>Publicaciones Diarias en Redes Sociales</li>
+                                <li>Anuncio de Video Publicitario semanal</li>
+                                <li>Anuncio para radio publicitario semanal</li>
+                                <li>Menciones y presencia de marca de todas nuestras radios aliadas</li>
+                            </ul>
+                            <p class="price-text mt-4">POR SOLO $1.399.000</p>
+                            <p class="text-sm text-gray-700">Con descuento de 50% por contrato de 6 meses (CON PAGO ANTICIPADO)</p>
+                        </div>
+
+                        <!-- Paquete 6 -->
+                        <div class="package-card package-card-informativo">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">PAQUETE 6</h4>
+                            <ul class="package-details text-gray-600 text-sm space-y-1">
+                                <li>Espacios en TV digital</li>
+                                <li>Publicaciones Diarias en nuestras 3 páginas web</li>
+                                <li>Publicaciones Diarias en Redes Sociales</li>
+                                <li>Anuncio de Video Publicitario semanal</li>
+                                <li>Anuncio para radio publicitario semanal</li>
+                                <li>Menciones y presencia de marca de todas nuestras radios aliadas</li>
+                            </ul>
+                            <p class="price-text mt-4">POR SOLO $999.000</p>
+                            <p class="text-sm text-gray-700">Con descuento de 50% por contrato de 6 meses (CON PAGO ANTICIPADO)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section class="w-full max-w-2xl text-center mt-16 p-8 card-glass rounded-2xl shadow-xl fade-in-up">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Contáctenos</h2>
+            <p class="text-lg text-gray-700 mb-8">¿Listo para fortalecer su seguridad digital con DPHACK-SERVICES o potenciar su mensaje con el periodismo y la comunicación estratégica de El Informativo La Región? Rellene el formulario a continuación y nos pondremos en contacto con usted lo antes posible para explorar soluciones integradas.</p>
+
+            <form class="space-y-6 text-left">
+                <div>
+                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre Completo</label>
+                    <input type="text" id="name" name="name" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:shadow-outline bg-white border-gray-300" placeholder="Su nombre">
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:shadow-outline bg-white border-gray-300" placeholder="su.correo@ejemplo.com">
+                </div>
+                <div>
+                    <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Asunto</label>
+                    <input type="text" id="subject" name="subject" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:shadow-outline bg-white border-gray-300" placeholder="Asunto de su mensaje">
+                </div>
+                <div>
+                    <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Mensaje</label>
+                    <textarea id="message" name="message" rows="5" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:shadow-outline bg-white border-gray-300" placeholder="Escriba su mensaje aquí..."></textarea>
+                </div>
+                <div class="flex items-center justify-center">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-lg focus:outline-none focus:shadow-outline">
+                        Enviar Mensaje
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Pie de Página -->
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Holding Corporativo DPHACK-SERVICES y El Informativo La Región. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesan%20sus%20servicios%20de%20ciberseguridad%20y%20comunicación." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    </a>
+
+    <script>
+        // JavaScript para animaciones de aparición al hacer scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.dataset.delay || '0');
+                        setTimeout(() => {
+                            entry.target.classList.add('is-visible');
+                        }, delay);
+                        observer.unobserve(entry.target); // Dejar de observar una vez que es visible
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
