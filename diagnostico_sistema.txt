@@ -1,0 +1,4 @@
+[+] Memoria RAM y SWAP
+               total       usado       libre  compartido   búf/caché  disponible
+Mem:           3,0Gi       1,5Gi       573Mi        18Mi       1,1Gi       1,5Gi
+Inter:         1,1Gi       425Mi       675Mi
